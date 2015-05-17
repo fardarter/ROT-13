@@ -1,5 +1,6 @@
 #libraries
 import argparse
+from rot13_lib import crypt_word
 
 #two-way table initialisation
 alpha_lc = [chr(x) for x in range(97, 123)]
@@ -28,28 +29,6 @@ def crypt(string, crypt_choice, offset):
             new_crypt += i
     return new_crypt
         
-#numerical encryption          
-def crypt_word(char, crypt_choice, offset, case):
-    originalIndex = case.index(char)
-    if crypt_choice == "encode":
-        if (originalIndex + offset) > 25:
-            newIndex = (originalIndex + offset - 26)
-            output = case[newIndex]
-            return output
-        elif (originalIndex + offset) <= 25:
-            newIndex = (originalIndex + offset)
-            output = case[newIndex]
-            return output
-    if crypt_choice == "decode":
-        if (originalIndex - offset) < 0:
-            newIndex = (originalIndex - offset + 26)
-            output = case[newIndex]
-            return output
-        elif (originalIndex - offset) >= 0:
-            newIndex = (originalIndex - offset)
-            output = case[newIndex]
-            return output      
-
 #command-line interaction
 def main():
     parser = argparse.ArgumentParser(description="This program is a ROT-X (rotation by X) encoder and decoder. \
