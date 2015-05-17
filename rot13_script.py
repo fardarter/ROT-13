@@ -1,38 +1,12 @@
 #libraries
 import sys
+from rot13_lib import crypt_word
 
 #two-way table initialisation
 
 alpha_lc = [chr(x) for x in range(97, 123)]
 alpha_uc = [chr(x) for x in range(65, 91)]
 
-#en/decryption#
-
-def crypt_word(char, crypt, offset, case):
-    originalIndex = case.index(char)
-    if crypt == "encode":
-        if (originalIndex + offset) > 25:
-            output = ''
-            newIndex = (originalIndex + offset - 26)
-            output += case[newIndex]
-            return output
-        elif (originalIndex + offset) <= 25:
-            output = ''
-            newIndex = (originalIndex + offset)
-            output += case[newIndex]
-            return output
-    if crypt == "decode":
-        if (originalIndex - offset) < 0:
-            output = ''
-            newIndex = (originalIndex - offset + 26)
-            output += case[newIndex]
-            return output
-        elif (originalIndex - offset) >= 0:
-            output = ''
-            newIndex = (originalIndex - offset)
-            output += case[newIndex]
-            return output
-        
 #input&output
 
 def input_output(crypt, offset):
